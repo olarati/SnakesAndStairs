@@ -28,6 +28,7 @@ public class PlayersTurnChanger : MonoBehaviour
         {
             _currentPlayerId = 0;
         }
+        SetPlayerText(_currentPlayerId);
     }
 
     private void SetPlayerText(int playerId)
