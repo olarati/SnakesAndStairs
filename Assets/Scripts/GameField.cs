@@ -32,4 +32,14 @@ public class GameField : MonoBehaviour
             }
         }
     }
+
+    public Vector3 GetCellPosition(int id)
+    {
+        if(id < 0 || id >= _cellsPositions.Length)
+        {
+            return Vector3.zero;
+        }
+
+        return _cellsPositions[id]; 
+    }
 }

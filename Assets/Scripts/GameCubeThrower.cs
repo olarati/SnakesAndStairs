@@ -1,19 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameCubeThrower : MonoBehaviour
 {
+    public GameStateChanger GameStateChanger;
+
     public GameCube GameCubePrefab;
     public Transform GameCubePoint;
 
-    public Button ThrowButton;
-
     private GameCube _gameCube;
 
-    [ContextMenu("ThrowCube")]
     public void ThrowCube()
     {
-        _gameCube.ThrowCube();
+        int cubeValue = _gameCube.ThrowCube();
+        GameStateChanger.DoPlayerTurn(cubeValue);
     }
 
     private void Start()

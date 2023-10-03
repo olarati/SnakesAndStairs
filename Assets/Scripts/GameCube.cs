@@ -14,12 +14,13 @@ public class GameCube : MonoBehaviour
         SetActiveCube(false);
     }
 
-    public void ThrowCube()
+    public int ThrowCube()
     {
         ShowCube();
 
         int randomCubeValue = Random.Range(0, CubeSidesEulers.Length);
         RotateCube(CubeSidesEulers[randomCubeValue]);
+        return randomCubeValue + 1;
     }
 
     private void RotateCube(Vector3 cubeEuler)

@@ -6,7 +6,15 @@ public class GameStateChanger : MonoBehaviour
 
     public PlayersChipsCreator PlayersChipsCreator;
     public PlayersTurnChanger PlayersTurnChanger;
-    public GameField GameField;
+    public PlayersChipsMover PlayersChipsMover;
+    public GameField GameField; 
+
+    public void DoPlayerTurn(int steps)
+    {
+        int currentPlayerId = PlayersTurnChanger.GetCurrentPlayerId();
+        PlayersChipsMover.MoveChip(currentPlayerId, steps);
+        PlayersTurnChanger.MovePlayerTurn();
+    }
 
     private void Start()
     {
@@ -18,6 +26,7 @@ public class GameStateChanger : MonoBehaviour
         GameField.FillCellsPositions();
         PlayerChip[] playersChips = PlayersChipsCreator.SpawnPlayersChips(PlayersCount);
         PlayersTurnChanger.StartGame(playersChips);
+        PlayersChipsMover.StartGame(playersChips);
     }
 
 }
