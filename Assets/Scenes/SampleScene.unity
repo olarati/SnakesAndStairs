@@ -1156,7 +1156,7 @@ GameObject:
   - component: {fileID: 1678225065}
   - component: {fileID: 1678225066}
   m_Layer: 0
-  m_Name: ExraMoveSettings
+  m_Name: TransitionSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,8 +1175,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1328389670}
   - {fileID: 1751540867}
+  - {fileID: 1328389670}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1678225066
@@ -1192,8 +1192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionDatas:
-  - {fileID: 1328389669}
   - {fileID: 1751540866}
+  - {fileID: 1328389669}
 --- !u!1 &1751540865
 GameObject:
   m_ObjectHideFlags: 0
