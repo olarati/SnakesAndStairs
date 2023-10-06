@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayersChipsMover : MonoBehaviour
 {
     public GameField GameField;
+    public TransitionSettings TransitionSettings;
 
     private PlayerChip[] _playersChips;
     private int[] _playersChipsCellsIds;
@@ -29,6 +30,7 @@ public class PlayersChipsMover : MonoBehaviour
         {
             _playersChipsCellsIds[playerId] = GameField.CellsCount - 1;
         }
+        TryApplyExtraMove(playerId);
         RefreshChipPosition(playerId);
     }
 
@@ -36,6 +38,17 @@ public class PlayersChipsMover : MonoBehaviour
     {
         Vector2 chipPosition = GameField.GetCellPosition(_playersChipsCellsIds[playerId]);
         _playersChips[playerId].SetPosition(chipPosition);
+    }
+
+    private void TryApplyExtraMove(int playerId)
+    {
+        int resultCellId = TransitionSettings.GetTransitionResultCellId(_playersChipsCellsIds[playerId]);
+        if(resultCellId < 0)
+        {
+            return;
+        }
+
+        _playersChipsCellsIds[playerId] = resultCellId;
     }
     
 }
