@@ -34,7 +34,7 @@ public class PlayersChipsMover : MonoBehaviour
 
     private void RefreshChipPosition(int playerId)
     {
-        Vector3 chipPosition = GameField.GetCellPosition(_playersChipsCellsIds[playerId]);
+        Vector2 chipPosition = GameField.GetCellPosition(_playersChipsCellsIds[playerId]);
         _playersChips[playerId].SetPosition(chipPosition);
     }
     

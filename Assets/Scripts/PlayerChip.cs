@@ -9,7 +9,7 @@ public class PlayerChip : MonoBehaviour
     }
 
 
-    public void SetPosition(Vector3 position)
+    public void SetPosition(Vector2 position)
     {
         transform.position = position;
     }
