@@ -21,6 +21,11 @@ public class PlayersChipsCreator : MonoBehaviour
         return playersChips;
     }
 
+    public void Clear()
+    {
+        DestroyPlayersChips();
+    }
+
     private PlayerChip SpawnPlayerChip(Sprite sprite)
     {
         if (!sprite)
@@ -32,5 +37,12 @@ public class PlayersChipsCreator : MonoBehaviour
         return newPlayerChip;
     }
 
+    private void DestroyPlayersChips()
+    {
+        for (int i = 0; i < playersChips.Length; i++)
+        {
+            Destroy(playersChips[i].gameObject);
+        }
+    }
 
 }

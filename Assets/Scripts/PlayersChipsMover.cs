@@ -34,6 +34,11 @@ public class PlayersChipsMover : MonoBehaviour
         RefreshChipPosition(playerId);
     }
 
+    public bool CheckPlayerFinished(int playerId)
+    {
+        return _playersChipsCellsIds[playerId] >= GameField.CellsCount - 1;
+    }
+
     private void RefreshChipPosition(int playerId)
     {
         Vector2 chipPosition = GameField.GetCellPosition(_playersChipsCellsIds[playerId]);
