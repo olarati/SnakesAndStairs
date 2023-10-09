@@ -30,7 +30,7 @@ public class PlayersChipsMover : MonoBehaviour
         {
             _playersChipsCellsIds[playerId] = GameField.CellsCount - 1;
         }
-        TryApplyExtraMove(playerId);
+        TryApplyTransition(playerId);
         RefreshChipPosition(playerId);
     }
 
@@ -45,7 +45,7 @@ public class PlayersChipsMover : MonoBehaviour
         _playersChips[playerId].SetPosition(chipPosition);
     }
 
-    private void TryApplyExtraMove(int playerId)
+    private void TryApplyTransition(int playerId)
     {
         int resultCellId = TransitionSettings.GetTransitionResultCellId(_playersChipsCellsIds[playerId]);
         if(resultCellId < 0)

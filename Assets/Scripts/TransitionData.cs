@@ -9,7 +9,7 @@ public class TransitionData : MonoBehaviour
     {
         for (int i = 0; i < CellsStartIds.Length; i++)
         {
-            if (CellsStartIds[i] == cellId && i < CellsEndIds.Length)
+            if (CellsStartIds[i] == cellId)
             {
                 return CellsEndIds[i];
             }
