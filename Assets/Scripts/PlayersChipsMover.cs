@@ -4,6 +4,7 @@ public class PlayersChipsMover : MonoBehaviour
 {
     public GameField GameField;
     public TransitionSettings TransitionSettings;
+    public PlayersChipsAnimator PlayersChipsAnimator;
 
     private PlayerChip[] _playersChips;
     private int[] _playersChipsCellsIds;
@@ -25,13 +26,16 @@ public class PlayersChipsMover : MonoBehaviour
 
     public void MoveChip(int playerId, int steps)
     {
+        int startCellId = _playersChipsCellsIds[playerId];
         _playersChipsCellsIds[playerId] += steps;
         if(_playersChipsCellsIds[playerId] >= GameField.CellsCount)
         {
             _playersChipsCellsIds[playerId] = GameField.CellsCount - 1;
         }
+        int lastCellId = _playersChipsCellsIds[playerId];
         TryApplyTransition(playerId);
-        RefreshChipPosition(playerId);
+        int afterTransitionCellId = _playersChipsCellsIds[playerId];
+        PlayersChipsAnimator.AnimateChipMovement(_playersChips[playerId], startCellId, lastCellId, afterTransitionCellId);
     }
 
     public bool CheckPlayerFinished(int playerId)
