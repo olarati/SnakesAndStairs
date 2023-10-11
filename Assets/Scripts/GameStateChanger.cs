@@ -17,7 +17,19 @@ public class GameStateChanger : MonoBehaviour
     public void DoPlayerTurn(int steps)
     {
         int currentPlayerId = PlayersTurnChanger.GetCurrentPlayerId();
-        PlayersChipsMover.MoveChip(currentPlayerId, steps);
+        PlayersChipsMover.MoveChip(currentPlayerId, steps, AfterPlayerTurn);
+    }
+
+    // Вызывается кнопкой
+    public void RestartGame()
+    {
+        PlayersChipsCreator.Clear();
+        StartGame();
+    }
+
+    private void AfterPlayerTurn()
+    {
+        int currentPlayerId = PlayersTurnChanger.GetCurrentPlayerId();
         bool isPlayerFinished = PlayersChipsMover.CheckPlayerFinished(currentPlayerId);
         if (isPlayerFinished)
         {
@@ -28,13 +40,6 @@ public class GameStateChanger : MonoBehaviour
         {
             PlayersTurnChanger.MovePlayerTurn();
         }
-    }
-
-    // Вызывается кнопкой
-    public void RestartGame()
-    {
-        PlayersChipsCreator.Clear();
-        StartGame();
     }
 
     private void Start()

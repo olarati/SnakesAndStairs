@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlayersChipsMover : MonoBehaviour
 {
     public GameField GameField;
     public TransitionSettings TransitionSettings;
+    public PlayersChipsAnimator PlayersChipsAnimator;
 
     private PlayerChip[] _playersChips;
     private int[] _playersChipsCellsIds;
@@ -23,15 +25,21 @@ public class PlayersChipsMover : MonoBehaviour
         }
     }
 
-    public void MoveChip(int playerId, int steps)
+    public void MoveChip(int playerId, int steps, Action onMovememntEnd)
     {
+        int startCellId = _playersChipsCellsIds[playerId];
         _playersChipsCellsIds[playerId] += steps;
-        if(_playersChipsCellsIds[playerId] >= GameField.CellsCount)
+        if (_playersChipsCellsIds[playerId] >= GameField.CellsCount)
         {
             _playersChipsCellsIds[playerId] = GameField.CellsCount - 1;
         }
+        int lastCellId = _playersChipsCellsIds[playerId];
+        
         TryApplyTransition(playerId);
-        RefreshChipPosition(playerId);
+        int afterTransitionCellId = _playersChipsCellsIds[playerId];
+
+        int[] movemementCells = GetMovementCells(startCellId, lastCellId, afterTransitionCellId);
+        PlayersChipsAnimator.AnimateChipMovement(_playersChips[playerId], movemementCells, onMovememntEnd);
     }
 
     public bool CheckPlayerFinished(int playerId)
@@ -55,6 +63,30 @@ public class PlayersChipsMover : MonoBehaviour
 
         _playersChipsCellsIds[playerId] = resultCellId;
     }
-    
+
+    private int[] GetMovementCells(int startCellId, int lastCellId, int afterTransitionCellId)
+    {
+        int cellsCount = lastCellId - startCellId;
+        bool hasTransition = lastCellId != afterTransitionCellId;
+        if (hasTransition)
+        {
+            cellsCount++;
+        }
+        int[] movementCells = new int[cellsCount];
+
+        for (int i = 0; i < movementCells.Length; i++)
+        {
+            if (i == movementCells.Length - 1 && hasTransition)
+            {
+                movementCells[i] = afterTransitionCellId;
+            }
+            else
+            {
+                movementCells[i] = startCellId + 1 + i;
+            }
+        }
+        return movementCells;
+    }
+
 }
 
