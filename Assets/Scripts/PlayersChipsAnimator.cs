@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayersChipsAnimator : MonoBehaviour
 {
+    public GameStateChanger GameStateChanger;
     public GameField GameField;
 
-    public float CellMoveDuration = 0.7f;
+    public float CellMoveDuration = 0.3f;
 
     private PlayerChip _playerChip;
     private bool isAnimateNow;
@@ -64,11 +65,6 @@ public class PlayersChipsAnimator : MonoBehaviour
             ToNextCell();
         }
 
-        if (!isAnimateNow)
-        {
-            return;
-        }
-
         _playerChip.SetPosition(Vector3.Lerp(_startPosition, _endPosition, _cellMoveTimer));
         _cellMoveTimer += Time.deltaTime / CellMoveDuration;
 
@@ -91,5 +87,6 @@ public class PlayersChipsAnimator : MonoBehaviour
     private void EndAnimation()
     {
         isAnimateNow = false;
+        GameStateChanger.ContinueGameAfterChipAnimation();
     }
 }

@@ -536,6 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a0bd6eb0bb79448bcabf6b7d745a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameStateChanger: {fileID: 2075051682}
   GameField: {fileID: 462888130}
   CellMoveDuration: 0.3
 --- !u!4 &547554929
@@ -2007,6 +2008,7 @@ MonoBehaviour:
   PlayersChipsMover: {fileID: 1664057130}
   GameField: {fileID: 462888130}
   GameScreenGO: {fileID: 381379094}
+  ThrowButton: {fileID: 810999804}
   GameEndScreenGO: {fileID: 1872099484}
   WinText: {fileID: 1158755005}
 --- !u!4 &2075051683

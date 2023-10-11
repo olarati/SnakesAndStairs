@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateChanger : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameStateChanger : MonoBehaviour
     public GameField GameField;
 
     public GameObject GameScreenGO;
+    public Button ThrowButton;
     public GameObject GameEndScreenGO;
     public TextMeshProUGUI WinText;
 
@@ -18,6 +20,19 @@ public class GameStateChanger : MonoBehaviour
     {
         int currentPlayerId = PlayersTurnChanger.GetCurrentPlayerId();
         PlayersChipsMover.MoveChip(currentPlayerId, steps);
+        SetThrowButtonInteractable(false);
+    }
+
+    // Вызывается кнопкой
+    public void RestartGame()
+    {
+        PlayersChipsCreator.Clear();
+        StartGame();
+    }
+
+    public void ContinueGameAfterChipAnimation()
+    {
+        int currentPlayerId = PlayersTurnChanger.GetCurrentPlayerId();
         bool isPlayerFinished = PlayersChipsMover.CheckPlayerFinished(currentPlayerId);
         if (isPlayerFinished)
         {
@@ -27,14 +42,8 @@ public class GameStateChanger : MonoBehaviour
         else
         {
             PlayersTurnChanger.MovePlayerTurn();
+            SetThrowButtonInteractable(true);
         }
-    }
-
-    // Вызывается кнопкой
-    public void RestartGame()
-    {
-        PlayersChipsCreator.Clear();
-        StartGame();
     }
 
     private void Start()
@@ -54,6 +63,7 @@ public class GameStateChanger : MonoBehaviour
         PlayersTurnChanger.StartGame(playersChips);
         PlayersChipsMover.StartGame(playersChips);
         SetScreens(true);
+        SetThrowButtonInteractable(true);
     }
 
     private void EndGame()
@@ -72,4 +82,8 @@ public class GameStateChanger : MonoBehaviour
         WinText.text = $"Игрок {playerId + 1} победил!";
     }
 
+    private void SetThrowButtonInteractable(bool value)
+    {
+        ThrowButton.interactable = value;
+    }
 }
