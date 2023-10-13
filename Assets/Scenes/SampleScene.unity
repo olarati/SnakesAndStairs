@@ -155,6 +155,7 @@ MonoBehaviour:
   GameStateChanger: {fileID: 2075051682}
   GameCubePrefab: {fileID: 7556876640527869762, guid: 4143e9221080a65409e4bb7e61725734, type: 3}
   GameCubePoint: {fileID: 1264629944}
+  CubeThrowAnimator: {fileID: 1264629946}
 --- !u!4 &15862570
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,6 +1078,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1264629944}
+  - component: {fileID: 1264629945}
+  - component: {fileID: 1264629946}
   m_Layer: 0
   m_Name: GameCubePoint
   m_TagString: Untagged
@@ -1098,7 +1101,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.2723083, z: 0.81791687}
+--- !u!111 &1264629945
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264629943}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d6b536d99fbf0324d9c497b6251f14a9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d6b536d99fbf0324d9c497b6251f14a9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &1264629946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264629943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2201e069bc86d444a3ef83428ce5b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CubeAnimation: {fileID: 1264629945}
+  GameCubeThrower: {fileID: 15862569}
 --- !u!1 &1290194104
 GameObject:
   m_ObjectHideFlags: 0
