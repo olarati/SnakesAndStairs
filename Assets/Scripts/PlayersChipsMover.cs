@@ -35,7 +35,9 @@ public class PlayersChipsMover : MonoBehaviour
         int lastCellId = _playersChipsCellsIds[playerId];
         TryApplyTransition(playerId);
         int afterTransitionCellId = _playersChipsCellsIds[playerId];
-        PlayersChipsAnimator.AnimateChipMovement(_playersChips[playerId], startCellId, lastCellId, afterTransitionCellId);
+
+        int[] movementCells = GetMovementCells(startCellId, lastCellId, afterTransitionCellId);
+        PlayersChipsAnimator.AnimateChipMovement(_playersChips[playerId], movementCells);
     }
 
     public bool CheckPlayerFinished(int playerId)
@@ -59,6 +61,30 @@ public class PlayersChipsMover : MonoBehaviour
 
         _playersChipsCellsIds[playerId] = resultCellId;
     }
-    
+
+    private int[] GetMovementCells(int startCellId, int lastCellId, int afterTransitionCellId)
+    {
+        int cellsCount = lastCellId - startCellId + 1;
+        bool hasTransition = lastCellId != afterTransitionCellId;
+        if (hasTransition)
+        {
+            cellsCount++;
+        }
+        int[] movementCells = new int[cellsCount];
+
+        for (int i = 0; i < movementCells.Length; i++)
+        {
+            if (i == movementCells.Length - 1 && hasTransition)
+            {
+                movementCells[i] = afterTransitionCellId;
+            }
+            else
+            {
+                movementCells[i] = startCellId + i;
+            }
+        }
+        return movementCells;
+    }
+
 }
 

@@ -12,41 +12,18 @@ public class PlayersChipsAnimator : MonoBehaviour
     private int[] _movementCells;
     private int _currentCellId;
     private float _cellMoveTimer;
-    private Vector3 _startPosition;
-    private Vector3 _endPosition;
-    public void AnimateChipMovement(PlayerChip playerChip, int startCellId, int lastCellId, int afterTransitionCellId)
+    private Vector2 _startPosition;
+    private Vector2 _endPosition;
+    public void AnimateChipMovement(PlayerChip playerChip, int[] movementCells)
     {
         _playerChip = playerChip;
-        _movementCells = GetMovementCells(startCellId, lastCellId, afterTransitionCellId);
+        _movementCells = movementCells;
         isAnimateNow = true;
         _currentCellId = -1;
 
         ToNextCell();
     }
 
-    private int[] GetMovementCells(int startCellId, int lastCellId, int afterTransitionCellId)
-    {
-        int cellsCount = lastCellId - startCellId + 1;
-        bool hasTransition = lastCellId != afterTransitionCellId;
-        if (hasTransition)
-        {
-            cellsCount++;
-        }
-        int[] movementCells = new int[cellsCount];
-
-        for (int i = 0; i < movementCells.Length; i++)
-        {
-            if (i == movementCells.Length - 1 && hasTransition)
-            {
-                movementCells[i] = afterTransitionCellId;
-            }
-            else
-            {
-                movementCells[i] = startCellId + i;
-            }
-        }
-        return movementCells;
-    }
 
     private void Update()
     {
@@ -65,7 +42,7 @@ public class PlayersChipsAnimator : MonoBehaviour
             ToNextCell();
         }
 
-        _playerChip.SetPosition(Vector3.Lerp(_startPosition, _endPosition, _cellMoveTimer));
+        _playerChip.SetPosition(Vector2.Lerp(_startPosition, _endPosition, _cellMoveTimer));
         _cellMoveTimer += Time.deltaTime / CellMoveDuration;
 
     }
