@@ -822,6 +822,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810999802}
   m_CullTransparentMesh: 1
+--- !u!1 &977511952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977511954}
+  - component: {fileID: 977511953}
+  m_Layer: 0
+  m_Name: AutoPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &977511953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977511952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b250c1a59b0e864a9093f17e65509ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayersChipsAnimator: {fileID: 547554928}
+  CubeThrowAnimator: {fileID: 1264629946}
+  GameStateChanger: {fileID: 2075051682}
+  GameCubeThrower: {fileID: 15862569}
+  NewCellMoveDuration: 0.01
+--- !u!4 &977511954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977511952}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1033984090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,3 +2125,4 @@ SceneRoots:
   - {fileID: 1264629944}
   - {fileID: 1412871058}
   - {fileID: 1033984093}
+  - {fileID: 977511954}
